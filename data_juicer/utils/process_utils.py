@@ -64,8 +64,16 @@ def setup_mp(method=None):
         method = [method]
     method = [m.lower() for m in method]
 
+    # An explicit MP_START_METHOD always wins, even when the caller passed a
+    # restricted candidate list (e.g. ["forkserver", "spawn"] for an op
+    # registered in UNFORKABLE). Some hosts have a broken forkserver/spawn
+    # path (e.g. multiprocessing.Manager AuthenticationError from contended
+    # semaphore/socket state on a heavily shared multi-user machine) where
+    # plain fork is demonstrably safe for a given op; this lets an operator
+    # opt into that override deliberately, without changing default behavior
+    # for anyone who doesn't set the env var.
     env_method = os.getenv("MP_START_METHOD", "").lower()
-    if env_method in method:
+    if env_method:
         method = [env_method]
 
     available_methods = mp.get_all_start_methods()
