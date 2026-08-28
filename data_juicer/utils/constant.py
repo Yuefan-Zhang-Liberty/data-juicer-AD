@@ -399,6 +399,11 @@ class StatsKeysConstant(object):
     video_aesthetic_score = "video_aesthetic_score"
     video_frames_aesthetics_score = "video_frames_aesthetics_score"
     video_motion_score = "video_motion_score"
+    video_camera_motion_consistency = "video_camera_motion_consistency"
+    video_motion_smoothness = "video_motion_smoothness"
+    video_mean_inlier_ratio = "video_mean_inlier_ratio"
+    video_mean_warp_error = "video_mean_warp_error"
+    video_max_motion_jerk = "video_max_motion_jerk"
     video_nsfw_score = "video_nsfw_score"
     video_watermark_prob = "video_watermark_prob"
 

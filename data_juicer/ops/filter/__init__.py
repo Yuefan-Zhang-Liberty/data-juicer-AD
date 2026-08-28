@@ -45,6 +45,7 @@ from .text_pair_similarity_filter import TextPairSimilarityFilter
 from .token_num_filter import TokenNumFilter
 from .video_aesthetics_filter import VideoAestheticsFilter
 from .video_aspect_ratio_filter import VideoAspectRatioFilter
+from .video_camera_motion_consistency_filter import VideoCameraMotionConsistencyFilter
 from .video_duration_filter import VideoDurationFilter
 from .video_face_ratio_filter import VideoFaceRatioFilter
 from .video_frames_text_similarity_filter import VideoFramesTextSimilarityFilter
@@ -104,6 +105,7 @@ __all__ = [
     "TokenNumFilter",
     "VideoAestheticsFilter",
     "VideoAspectRatioFilter",
+    "VideoCameraMotionConsistencyFilter",
     "VideoDurationFilter",
     "VideoFramesTextSimilarityFilter",
     "VideoMotionScoreFilter",

@@ -1104,6 +1104,20 @@ process:
       reduce_mode: avg                                        # reduce mode when one text corresponds to multiple videos in a chunk,  must be one of ['avg','max', 'min'].
       any_or_all: any                                         # keep this sample when any/all videos meet the filter condition
       memory: '1500MB'                                  # This operation (Op) utilizes deep neural network models that consume a significant amount of memory for computation, hence the system's available memory might constrain the maximum number of processes that can be launched
+  - video_camera_motion_consistency_filter:                 # Keep samples whose video camera motion is consistent and trackable.
+      min_consistency: 0.05                                   # the minimum camera motion consistency score to keep samples (calibrated for real dashcam-style footage, see op docstring)
+      max_consistency: 10000.0                                # the maximum camera motion consistency score to keep samples
+      sampling_fps: 2                                         # the sampling rate of frames_per_second used to select frame pairs
+      original_fps: null                                      # the original FPS of the video from which the frames were extracted, only used when frame_field is specified
+      size: null                                              # resize frames along the smaller edge before tracking, or a sequence like (h, w)
+      max_size: null                                          # maximum allowed for the longer edge of resized frames
+      divisible: 1                                            # The number that the dimensions must be divisible by.
+      max_corners: 200                                        # max number of Shi-Tomasi corners to detect per frame
+      quality_level: 0.01                                     # Shi-Tomasi minimal accepted corner quality
+      min_distance: 7                                         # minimum possible Euclidean distance between detected Shi-Tomasi corners
+      ransac_reproj_threshold: 3.0                            # maximum reprojection error (in pixels) for a RANSAC inlier when fitting the homography
+      min_track_points: 8                                     # minimum number of tracked correspondences required to fit a homography for a frame pair
+      any_or_all: any                                         # keep this sample when any/all videos meet the filter condition
   - video_motion_score_filter:                              # Keep samples with video motion scores within a specific range.
       min_score: 0.25                                         # the minimum motion score to keep samples
       max_score: 10000.0                                      # the maximum motion score to keep samples
